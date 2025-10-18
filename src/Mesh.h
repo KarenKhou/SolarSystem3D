@@ -18,7 +18,9 @@ private:
     std::vector<float> m_vertexNormals;
     std::vector<unsigned int> m_triangleIndices;
     std::vector<float> g_vertexColors;
+    std::vector<float> m_vertexTexCoords;
 
+    GLuint m_texCoordVbo = 0;
     GLuint m_vao = 0;
     GLuint m_posVbo = 0;
     GLuint m_normalVbo = 0;

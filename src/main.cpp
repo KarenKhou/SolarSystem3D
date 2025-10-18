@@ -49,12 +49,15 @@ GLuint g_vao = 0;
 GLuint g_posVbo = 0;
 GLuint g_colVbo = 0;
 GLuint g_ibo = 0;
+GLuint g_texSun, g_texEarth, g_texMoon;
+
 
 // All vertex positions packed in one array [x0, y0, z0, x1, y1, z1, ...]
 std::vector<float> g_vertexPositions;
 // All triangle indices packed in one array [v00, v01, v02, v10, v11, v12, ...] with vij the index of j-th vertex of the i-th triangle
 std::vector<unsigned int> g_triangleIndices;
 std::vector<float> g_vertexColors;
+
 
 // Basic camera model
 class Camera {
@@ -88,25 +91,62 @@ private:
 };
 Camera g_camera;
 
+// GLuint loadTextureFromFileToGPU(const std::string &filename) {
+//   int width, height, numComponents;
+//   // Loading the image in CPU memory using stb_image
+//   unsigned char *data = stbi_load(
+//     filename.c_str(),
+//     &width, &height,
+//     &numComponents, // 1 for a 8 bit grey-scale image, 3 for 24bits RGB image, 4 for 32bits RGBA image
+//     0);
+
+//   GLuint texID;
+//   // TODO: create a texture and upload the image data in GPU memory using
+//   // glGenTextures, glBindTexture, glTexParameteri, and glTexImage2D
+
+//   // Free useless CPU memory
+//   stbi_image_free(data);
+//   glBindTexture(GL_TEXTURE_2D, 0); // unbind the texture
+
+//   return texID;
+// }
+
 GLuint loadTextureFromFileToGPU(const std::string &filename) {
-  int width, height, numComponents;
-  // Loading the image in CPU memory using stb_image
-  unsigned char *data = stbi_load(
-    filename.c_str(),
-    &width, &height,
-    &numComponents, // 1 for a 8 bit grey-scale image, 3 for 24bits RGB image, 4 for 32bits RGBA image
-    0);
+    int width, height, numComponents;
+    unsigned char *data = stbi_load(filename.c_str(), &width, &height, &numComponents, 0);
+    if (!data) {
+        std::cerr << "❌ Failed to load texture: " << filename << std::endl;
+        return 0;
+    }
 
-  GLuint texID;
-  // TODO: create a texture and upload the image data in GPU memory using
-  // glGenTextures, glBindTexture, glTexParameteri, and glTexImage2D
+    GLuint texID;
+    glGenTextures(1, &texID);
+    glBindTexture(GL_TEXTURE_2D, texID);
 
-  // Free useless CPU memory
-  stbi_image_free(data);
-  glBindTexture(GL_TEXTURE_2D, 0); // unbind the texture
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-  return texID;
+    // Détermine le bon format selon numComponents
+    GLenum format = GL_RGB;
+    if (numComponents == 1)
+        format = GL_RED;
+    else if (numComponents == 3)
+        format = GL_RGB;
+    else if (numComponents == 4)
+        format = GL_RGBA;
+
+    // Transfère l’image au GPU
+    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+
+    stbi_image_free(data);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    std::cout << "✅ Texture loaded: " << filename << " (" << width << "x" << height << ", " << numComponents << " channels)" << std::endl;
+    return texID;
 }
+
 
 // Executed each time the window is resized. Adjust the aspect ratio and the rendering viewport to the current window.
 void windowSizeCallback(GLFWwindow* window, int width, int height) {
@@ -322,6 +362,13 @@ void init() {
   g_moon = glm::translate(g_earth,glm::vec3(kRadOrbitMoon,0.0f,0.0f))
            * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeMoon));
 
+  //g_texSun   = loadTextureFromFileToGPU("../../media/sun.jpg");
+  g_texEarth = loadTextureFromFileToGPU("../../media/earth.jpg");
+  g_texMoon  = loadTextureFromFileToGPU("../../media/moon.jpg");
+
+
+
+
 }
 
 void clear() {
@@ -390,29 +437,38 @@ void render() {
     glUniform3fv(glGetUniformLocation(g_program, "lightPos"), 1, glm::value_ptr(lightPos));
 
 
-    // Terre
+    // // Terre
+    // glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_earth));
+    // glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.2f, 1.0f, 0.2f);
+    // glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    // sphere->render();
+
+    // // Lune
+    // glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_moon));
+    // glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.3f, 0.3f, 1.0f);
+    // glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    // sphere->render();
+    // 🌍 Terre
     glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_earth));
-    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.2f, 1.0f, 0.2f);
+
     glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 1.0f); // neutre
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texEarth);
+    glUniform1i(glGetUniformLocation(g_program, "texSampler"), 0);
     sphere->render();
 
-    // Lune
+    // 🌙 Lune
     glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_moon));
-    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.3f, 0.3f, 1.0f);
+
     glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 1.0f); // neutre
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texMoon);
+    glUniform1i(glGetUniformLocation(g_program, "texSampler"), 0);
     sphere->render();
 
-    // const glm::vec3 camPosition = g_camera.getPosition();
-    // glUniform3f(glGetUniformLocation(g_program, "camPos"), camPosition[0], camPosition[1], camPosition[2]);
 
-    // const glm::mat4 viewMatrix = g_camera.computeViewMatrix();
-    // const glm::mat4 projMatrix = g_camera.computeProjectionMatrix();
-
-    // glUniformMatrix4fv(glGetUniformLocation(g_program, "viewMat"), 1, GL_FALSE, glm::value_ptr(viewMatrix)); // compute the view matrix of the camera and pass it to the GPU program
-    // glUniformMatrix4fv(glGetUniformLocation(g_program, "projMat"), 1, GL_FALSE, glm::value_ptr(projMatrix)); // compute the projection matrix of the camera and pass it to the GPU program
-
-    //glBindVertexArray(g_vao);     // activate the VAO storing geometry data
-    // glDrawElements(GL_TRIANGLES, g_triangleIndices.size(), GL_UNSIGNED_INT, 0); // Call for rendering: stream the current GPU geometry through the current GPU program
 }
 
 

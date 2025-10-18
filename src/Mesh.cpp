@@ -26,6 +26,14 @@ std::shared_ptr<Mesh> Mesh::genSphere(const size_t resolution) {
             mesh->m_vertexNormals.push_back(x);
             mesh->m_vertexNormals.push_back(y);
             mesh->m_vertexNormals.push_back(z);
+
+            float u = float(j) / float(nbrdedivhorizontale);
+            float v = float(i) / float(nbrdedivverticale);
+
+            mesh->m_vertexTexCoords.push_back(u);
+            mesh->m_vertexTexCoords.push_back(v);
+
+
         }
     }
 
@@ -107,11 +115,16 @@ void Mesh::init() {
     // --- Nettoyage ---
     glBindVertexArray(0); // désactive le VAO
 
-    glGenBuffers(1, &g_colVbo);
-    glBindBuffer(GL_ARRAY_BUFFER, g_colVbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * g_vertexColors.size(), g_vertexColors.data(), GL_DYNAMIC_READ);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-    glEnableVertexAttribArray(1);
+
+    glGenBuffers(1, &m_texCoordVbo);
+    glBindBuffer(GL_ARRAY_BUFFER, m_texCoordVbo);
+    glBufferData(GL_ARRAY_BUFFER,
+                 sizeof(float) * m_vertexTexCoords.size(),
+                 m_vertexTexCoords.data(),
+                 GL_STATIC_DRAW);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(2);
+
 }
 
 

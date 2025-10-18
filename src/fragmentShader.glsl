@@ -41,47 +41,105 @@
 // }
 
 
+// uniform vec3 camPos;
+// uniform vec3 objectColor;
+// uniform int isLightSource;
+
+// in vec3 fPosition;
+// in vec3 fNormal;
+
+
+// out vec4 color;
+
+// void main()
+// {
+
+//     float ka = 0.3;
+//     float kd = 1.0;
+//     float ks = 0.6;
+//     float alpha = 64.0;
+//     vec3 lightColor = vec3(1.0);
+
+//     if (isLightSource == 1) {
+//         // Le soleil s’éclaire lui
+//         color = vec4(objectColor, 1.0);
+//         return;
+//     }
+
+//     vec3 n = normalize(fNormal);
+//     vec3 lightPos = vec3(0.0, 0.0, 0.0); // soleil au centre
+//     vec3 l = normalize(lightPos - fPosition);
+//     vec3 v = normalize(camPos - fPosition);
+//     vec3 r = reflect(-l, n);
+
+
+//     // Composantes
+
+
+//     vec3 ambient  = ka * lightColor * objectColor;
+//     float diff = max(dot(n, l), 0.0);
+//     vec3 diffuse  = kd * diff * lightColor * objectColor;
+//     float spec = pow(max(dot(v, r), 0.0), alpha);
+//     vec3 specular = ks * spec * lightColor;
+
+//     vec3 finalColor = ambient + diffuse + specular;
+//     color = vec4(finalColor, 1.0);
+// }
+
+
 uniform vec3 camPos;
-uniform vec3 objectColor;
-uniform int isLightSource;
+uniform int isLightSource;     // 1 = Soleil, 0 = autres planètes
+uniform vec3 objectColor;      // utilisé uniquement pour le Soleil
+uniform sampler2D texSampler;  // texture pour Terre/Lune
 
 in vec3 fPosition;
 in vec3 fNormal;
+in vec2 fTexCoords;
 
 out vec4 color;
 
 void main()
 {
-
-    float ka = 0.3;
-    float kd = 1.0;
-    float ks = 0.6;
-    float alpha = 64.0;
+    // -----------------------------
+    // 🌞 1️⃣ Paramètres de matériau
+    // -----------------------------
+    float ka = 0.3;   // ambient
+    float kd = 1.0;   // diffuse
+    float ks = 0.6;   // specular
+    float alpha = 64.0; // brillance
     vec3 lightColor = vec3(1.0);
+    vec3 lightPos   = vec3(0.0, 0.0, 0.0); // soleil = lumière au centre
 
+    // -----------------------------
+    // ☀️ 2️⃣ Soleil = pas d’éclairage
+    // -----------------------------
     if (isLightSource == 1) {
-        // Le soleil s’éclaire lui
         color = vec4(objectColor, 1.0);
         return;
     }
 
+    // -----------------------------
+    // 🌍 3️⃣ Calcul des vecteurs
+    // -----------------------------
     vec3 n = normalize(fNormal);
-    vec3 lightPos = vec3(0.0, 0.0, 0.0); // soleil au centre
     vec3 l = normalize(lightPos - fPosition);
     vec3 v = normalize(camPos - fPosition);
     vec3 r = reflect(-l, n);
 
-
-    // Composantes
-
-
-    vec3 ambient  = ka * lightColor * objectColor;
+    // -----------------------------
+    // 💡 4️⃣ Éclairage de Phong
+    // -----------------------------
+    vec3 ambient  = ka * lightColor;
     float diff = max(dot(n, l), 0.0);
-    vec3 diffuse  = kd * diff * lightColor * objectColor;
+    vec3 diffuse  = kd * diff * lightColor;
     float spec = pow(max(dot(v, r), 0.0), alpha);
     vec3 specular = ks * spec * lightColor;
 
-    vec3 finalColor = ambient + diffuse + specular;
+    // -----------------------------
+    // 🖼️ 5️⃣ Couleur du matériau
+    // -----------------------------
+    vec3 texColor = texture(texSampler, fTexCoords).rgb; // couleur de la texture
+    vec3 finalColor = texColor * (ambient + diffuse) + specular;
+
     color = vec4(finalColor, 1.0);
 }
-
