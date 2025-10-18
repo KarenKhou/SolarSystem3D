@@ -32,16 +32,11 @@
 #include <string>
 #include <cmath>
 #include <memory>
+#include "Mesh.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-// constants
-const static float kSizeSun = 1;
-const static float kSizeEarth = 0.5;
-const static float kSizeMoon = 0.25;
-const static float kRadOrbitEarth = 10;
-const static float kRadOrbitMoon = 2;
 
 // Window parameters
 GLFWwindow *g_window = nullptr;
@@ -293,11 +288,24 @@ void initCamera() {
   glfwGetWindowSize(g_window, &width, &height);
   g_camera.setAspectRatio(static_cast<float>(width)/static_cast<float>(height));
 
-  g_camera.setPosition(glm::vec3(0.0, 0.0, 3.0));
+  g_camera.setPosition(glm::vec3(0.0, 0.0, 23.0));
   g_camera.setNear(0.1);
   g_camera.setFar(80.1);
 }
 
+
+// Constants
+const static float kSizeSun = 1;
+const static float kSizeEarth = 0.5;
+const static float kSizeMoon = 0.25;
+const static float kRadOrbitEarth = 10;
+const static float kRadOrbitMoon = 2;
+
+// Transformations (model matrices)
+glm::mat4 g_sun, g_earth, g_moon;
+
+
+auto sphere =  Mesh::genSphere(32);
 void init() {
   initGLFW();
   initOpenGL();
@@ -305,6 +313,15 @@ void init() {
   initGPUprogram();
   initGPUgeometry();
   initCamera();
+  sphere->init();
+
+  //matrice de transformation
+  g_sun= glm::scale(glm::mat4(1.0f),glm::vec3(kSizeSun));
+  g_earth = glm::translate(glm::mat4(1.0f), glm::vec3(kRadOrbitEarth, 0.0f, 0.0f))
+            * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeEarth));
+  g_moon = glm::translate(g_earth,glm::vec3(kRadOrbitMoon,0.0f,0.0f))
+           * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeMoon));
+
 }
 
 void clear() {
@@ -314,30 +331,94 @@ void clear() {
   glfwTerminate();
 }
 
-// The main rendering call
-void render() {
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Erase the color and z buffers.
-
-  const glm::mat4 viewMatrix = g_camera.computeViewMatrix();
-  const glm::mat4 projMatrix = g_camera.computeProjectionMatrix();
-
-  glUniformMatrix4fv(glGetUniformLocation(g_program, "viewMat"), 1, GL_FALSE, glm::value_ptr(viewMatrix)); // compute the view matrix of the camera and pass it to the GPU program
-  glUniformMatrix4fv(glGetUniformLocation(g_program, "projMat"), 1, GL_FALSE, glm::value_ptr(projMatrix)); // compute the projection matrix of the camera and pass it to the GPU program
-
-  glBindVertexArray(g_vao);     // activate the VAO storing geometry data
-  glDrawElements(GL_TRIANGLES, g_triangleIndices.size(), GL_UNSIGNED_INT, 0); // Call for rendering: stream the current GPU geometry through the current GPU program
-}
-
 // Update any accessible variable based on the current time
 void update(const float currentTimeInSec) {
   // std::cout << currentTimeInSec << std::endl;
 
+        double t = glfwGetTime();
+
+        // Soleil
+        g_sun = glm::scale(glm::mat4(1.0f), glm::vec3(kSizeSun));
+
+        // Terre
+        float angleEarthRot   = (float)t;
+        float angleEarthOrbit = (float)t / 2.0f;
+
+        g_earth = glm::mat4(1.0f);
+        g_earth = glm::rotate(g_earth, angleEarthOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_earth = glm::translate(g_earth, glm::vec3(kRadOrbitEarth, 0.0f, 0.0f));
+        g_earth = glm::rotate(g_earth, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_earth = glm::rotate(g_earth, angleEarthRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_earth = glm::scale(g_earth, glm::vec3(kSizeEarth));
+
+        // Lune
+        float angleMoonOrbit = (float)t * 2.0f;
+        float angleMoonRot   = angleMoonOrbit;
+
+        g_moon = glm::mat4(1.0f);
+        g_moon = glm::rotate(g_moon, angleEarthOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_moon = glm::translate(g_moon, glm::vec3(kRadOrbitEarth, 0.0f, 0.0f));
+        g_moon = glm::rotate(g_moon, angleMoonOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_moon = glm::translate(g_moon, glm::vec3(kRadOrbitMoon, 0.0f, 0.0f));
+        g_moon = glm::rotate(g_moon, angleMoonRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_moon = glm::scale(g_moon, glm::vec3(kSizeMoon));
+
+
+}
+
+
+
+// The main rendering call
+void render() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Erase the color and z buffers.
+    const glm::mat4 viewMatrix = g_camera.computeViewMatrix();
+    const glm::mat4 projMatrix = g_camera.computeProjectionMatrix();
+
+    glUseProgram(g_program);
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "viewMat"), 1, GL_FALSE, glm::value_ptr(viewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "projMat"), 1, GL_FALSE, glm::value_ptr(projMatrix));
+
+    glm::vec3 camPos = g_camera.getPosition();
+    glUniform3fv(glGetUniformLocation(g_program, "camPos"), 1, glm::value_ptr(camPos));
+
+    //Soleil
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_sun));
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 0.2f);
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 1);
+    sphere->render();
+    glm::vec3 lightPos = glm::vec3(g_sun[3]); // position du Soleil dans le monde
+    glUniform3fv(glGetUniformLocation(g_program, "lightPos"), 1, glm::value_ptr(lightPos));
+
+
+    // Terre
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_earth));
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.2f, 1.0f, 0.2f);
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    sphere->render();
+
+    // Lune
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_moon));
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.3f, 0.3f, 1.0f);
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    sphere->render();
+
+    // const glm::vec3 camPosition = g_camera.getPosition();
+    // glUniform3f(glGetUniformLocation(g_program, "camPos"), camPosition[0], camPosition[1], camPosition[2]);
+
+    // const glm::mat4 viewMatrix = g_camera.computeViewMatrix();
+    // const glm::mat4 projMatrix = g_camera.computeProjectionMatrix();
+
+    // glUniformMatrix4fv(glGetUniformLocation(g_program, "viewMat"), 1, GL_FALSE, glm::value_ptr(viewMatrix)); // compute the view matrix of the camera and pass it to the GPU program
+    // glUniformMatrix4fv(glGetUniformLocation(g_program, "projMat"), 1, GL_FALSE, glm::value_ptr(projMatrix)); // compute the projection matrix of the camera and pass it to the GPU program
+
+    //glBindVertexArray(g_vao);     // activate the VAO storing geometry data
+    // glDrawElements(GL_TRIANGLES, g_triangleIndices.size(), GL_UNSIGNED_INT, 0); // Call for rendering: stream the current GPU geometry through the current GPU program
 }
 
 
 int main(int argc, char ** argv) {
   init(); // Your initialization code (user interface, OpenGL states, scene with geometry, material, lights, etc)
-  while(!glfwWindowShouldClose(g_window)) {
+    while(!glfwWindowShouldClose(g_window)) {
     update(static_cast<float>(glfwGetTime()));
     render();
     glfwSwapBuffers(g_window);

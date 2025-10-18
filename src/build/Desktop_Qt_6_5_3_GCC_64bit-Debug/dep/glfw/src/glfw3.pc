@@ -1,7 +1,7 @@
-prefix=/usr/local
+prefix=/tmp
 exec_prefix=${prefix}
-includedir=/usr/local/include
-libdir=/usr/local/lib
+includedir=/tmp/include
+libdir=/tmp/lib
 
 Name: GLFW
 Description: A multi-platform library for OpenGL, window and input

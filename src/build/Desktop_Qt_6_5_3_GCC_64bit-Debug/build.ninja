@@ -56,8 +56,14 @@ build CMakeFiles/tpOpenGL.dir/main.cpp.o: CXX_COMPILER__tpOpenGL_unscanned_Debug
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src
   OBJECT_DIR = CMakeFiles/tpOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles/tpOpenGL.dir
-  TARGET_COMPILE_PDB = CMakeFiles/tpOpenGL.dir/
-  TARGET_PDB = tpOpenGL.pdb
+
+build CMakeFiles/tpOpenGL.dir/Mesh.cpp.o: CXX_COMPILER__tpOpenGL_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/Mesh.cpp || cmake_object_order_depends_target_tpOpenGL
+  DEFINES = -D_MY_OPENGL_IS_33_
+  DEP_FILE = CMakeFiles/tpOpenGL.dir/Mesh.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++11 -fdiagnostics-color=always
+  INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src
+  OBJECT_DIR = CMakeFiles/tpOpenGL.dir
+  OBJECT_FILE_DIR = CMakeFiles/tpOpenGL.dir
 
 build CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o: C_COMPILER__tpOpenGL_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/src/gl.c || cmake_object_order_depends_target_tpOpenGL
   DEFINES = -D_MY_OPENGL_IS_33_
@@ -66,8 +72,6 @@ build CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o: C_COMPILER__tpOpenGL_unscanne
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src
   OBJECT_DIR = CMakeFiles/tpOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles/tpOpenGL.dir/dep/glad/src
-  TARGET_COMPILE_PDB = CMakeFiles/tpOpenGL.dir/
-  TARGET_PDB = tpOpenGL.pdb
 
 
 # =============================================================================
@@ -77,15 +81,14 @@ build CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o: C_COMPILER__tpOpenGL_unscanne
 #############################################
 # Link the executable tpOpenGL
 
-build tpOpenGL: CXX_EXECUTABLE_LINKER__tpOpenGL_Debug CMakeFiles/tpOpenGL.dir/main.cpp.o CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o | dep/glfw/src/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.a /usr/lib/x86_64-linux-gnu/libm.so || dep/glfw/src/libglfw3.a
+build tpOpenGL: CXX_EXECUTABLE_LINKER__tpOpenGL_Debug CMakeFiles/tpOpenGL.dir/main.cpp.o CMakeFiles/tpOpenGL.dir/Mesh.cpp.o CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o | dep/glfw/src/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.a /usr/lib/x86_64-linux-gnu/libm.so || dep/glfw/src/libglfw3.a
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = dep/glfw/src/libglfw3.a  -ldl  /usr/lib/x86_64-linux-gnu/librt.a  -lm  -ldl
   OBJECT_DIR = CMakeFiles/tpOpenGL.dir
   POST_BUILD = cd /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug && /home/karenelkhoury/Qt/Tools/CMake/bin/cmake -E copy /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/tpOpenGL /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/tpOpenGL.dir/
   TARGET_FILE = tpOpenGL
-  TARGET_PDB = tpOpenGL.pdb
+  TARGET_PDB = tpOpenGL.dbg
 
 
 #############################################
@@ -258,8 +261,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/context.c.o: C_COMPILER__glfw_unscanned_D
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -268,8 +269,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned_Debu
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -278,8 +277,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanned_Deb
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -288,8 +285,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscanned_D
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -298,8 +293,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unscanned_
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -308,8 +301,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscanned_De
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -318,8 +309,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscanned_De
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -328,8 +317,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -338,8 +325,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw_unsc
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -348,8 +333,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unscanned
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -358,8 +341,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -368,8 +349,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -378,8 +357,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_unsca
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/posix_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -388,8 +365,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/posix_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -398,8 +373,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/posix_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -408,8 +381,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/x11_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -418,8 +389,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: C_COMPILER__glfw_unscanned_
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/x11_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -428,8 +397,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/x11_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -438,8 +405,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/xkb_unicode.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -448,8 +413,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/glx_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -458,8 +421,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/wl_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -468,8 +429,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: C_COMPILER__glfw_unscanned_D
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/wl_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -478,8 +437,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/wl_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -488,8 +445,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: C_COMPILER__glfw_unscanned
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/linux_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -498,8 +453,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: C_COMPILER__glfw_unsc
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 build dep/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: C_COMPILER__glfw_unscanned_Debug /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/posix_poll.c || cmake_object_order_depends_target_glfw
   DEFINES = -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -D_MY_OPENGL_IS_33_
@@ -508,8 +461,6 @@ build dep/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = dep/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
 
 
 # =============================================================================
@@ -524,9 +475,8 @@ build dep/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_Debug dep/glfw/src/
   OBJECT_DIR = dep/glfw/src/CMakeFiles/glfw.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = dep/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
   TARGET_FILE = dep/glfw/src/libglfw3.a
-  TARGET_PDB = dep/glfw/src/libglfw3.pdb
+  TARGET_PDB = glfw3.a.dbg
 
 
 #############################################
@@ -968,14 +918,14 @@ build dep/glm/all: phony
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | .qtc/package-manager/auto-setup.cmake .qtc/package-manager/maintenance_tool_provider.cmake /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/cmake_uninstall.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3.pc.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3Config.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/docs/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glm/CMakeLists.txt /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCCompilerABI.c /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDependentOption.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystem.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckFunctionExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFile.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindDoxygen.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPkgConfig.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindX11.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | .qtc/package-manager/auto-setup.cmake .qtc/package-manager/maintenance_tool_provider.cmake /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/cmake_uninstall.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3.pc.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3Config.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/docs/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glm/CMakeLists.txt /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDependentOption.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckFunctionExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFile.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindDoxygen.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPkgConfig.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindX11.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build .qtc/package-manager/auto-setup.cmake .qtc/package-manager/maintenance_tool_provider.cmake /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/cmake_uninstall.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3.pc.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3Config.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/docs/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glm/CMakeLists.txt /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCCompilerABI.c /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDependentOption.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystem.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckFunctionExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFile.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindDoxygen.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPkgConfig.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindX11.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
+build .qtc/package-manager/auto-setup.cmake .qtc/package-manager/maintenance_tool_provider.cmake /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/cmake_uninstall.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3.pc.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMake/glfw3Config.cmake.in /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/docs/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/src/CMakeLists.txt /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glm/CMakeLists.txt /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDependentOption.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckFunctionExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFile.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindDoxygen.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPkgConfig.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindX11.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake: phony
 
 
 #############################################
