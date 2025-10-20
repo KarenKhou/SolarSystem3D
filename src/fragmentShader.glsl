@@ -88,21 +88,24 @@
 
 
 uniform vec3 camPos;
-uniform int isLightSource;     // 1 = Soleil, 0 = autres planètes
-uniform vec3 objectColor;      // utilisé uniquement pour le Soleil
-uniform sampler2D texSampler;  // texture pour Terre/Lune
+uniform int isLightSource;
+uniform vec3 objectColor;
+uniform vec3 lightPos;
+
+struct Material {
+    sampler2D albedoTex;
+};
+
+uniform Material material;
 
 in vec3 fPosition;
 in vec3 fNormal;
 in vec2 fTexCoords;
 
 out vec4 color;
-
 void main()
 {
-    // -----------------------------
-    // 🌞 1️⃣ Paramètres de matériau
-    // -----------------------------
+
     float ka = 0.3;   // ambient
     float kd = 1.0;   // diffuse
     float ks = 0.6;   // specular
@@ -110,36 +113,31 @@ void main()
     vec3 lightColor = vec3(1.0);
     vec3 lightPos   = vec3(0.0, 0.0, 0.0); // soleil = lumière au centre
 
-    // -----------------------------
-    // ☀️ 2️⃣ Soleil = pas d’éclairage
-    // -----------------------------
+
     if (isLightSource == 1) {
         color = vec4(objectColor, 1.0);
+        color=texture(material.albedoTex, fTexCoords);
         return;
     }
 
-    // -----------------------------
-    // 🌍 3️⃣ Calcul des vecteurs
-    // -----------------------------
+
     vec3 n = normalize(fNormal);
     vec3 l = normalize(lightPos - fPosition);
     vec3 v = normalize(camPos - fPosition);
     vec3 r = reflect(-l, n);
 
-    // -----------------------------
-    // 💡 4️⃣ Éclairage de Phong
-    // -----------------------------
-    vec3 ambient  = ka * lightColor;
-    float diff = max(dot(n, l), 0.0);
-    vec3 diffuse  = kd * diff * lightColor;
-    float spec = pow(max(dot(v, r), 0.0), alpha);
-    vec3 specular = ks * spec * lightColor;
 
-    // -----------------------------
-    // 🖼️ 5️⃣ Couleur du matériau
-    // -----------------------------
-    vec3 texColor = texture(texSampler, fTexCoords).rgb; // couleur de la texture
-    vec3 finalColor = texColor * (ambient + diffuse) + specular;
+    vec3 ambient  = ka * lightColor * objectColor;
+       float diff = max(dot(n, l), 0.0);
+       vec3 diffuse  = kd * diff * lightColor * objectColor;
+       float spec = pow(max(dot(v, r), 0.0), alpha);
+       vec3 specular = ks * spec * lightColor;
+    //objectColor=texture(material.albedoTex, fTexCoords);
 
-    color = vec4(finalColor, 1.0);
+    color = texture(material.albedoTex, fTexCoords);
+
+    // vec3 texColor = texture(texSampler, fTexCoords).rgb; // couleur de la texture
+    // vec3 finalColor = texColor * (ambient + diffuse) + specular;
+
+    // color = vec4(finalColor, 1.0);
 }

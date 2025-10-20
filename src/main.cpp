@@ -49,7 +49,7 @@ GLuint g_vao = 0;
 GLuint g_posVbo = 0;
 GLuint g_colVbo = 0;
 GLuint g_ibo = 0;
-GLuint g_texSun, g_texEarth, g_texMoon;
+GLuint g_texSun=0, g_texEarth=0, g_texMoon=0;
 
 
 // All vertex positions packed in one array [x0, y0, z0, x1, y1, z1, ...]
@@ -114,10 +114,6 @@ Camera g_camera;
 GLuint loadTextureFromFileToGPU(const std::string &filename) {
     int width, height, numComponents;
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &numComponents, 0);
-    if (!data) {
-        std::cerr << "❌ Failed to load texture: " << filename << std::endl;
-        return 0;
-    }
 
     GLuint texID;
     glGenTextures(1, &texID);
@@ -128,22 +124,10 @@ GLuint loadTextureFromFileToGPU(const std::string &filename) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-    // Détermine le bon format selon numComponents
-    GLenum format = GL_RGB;
-    if (numComponents == 1)
-        format = GL_RED;
-    else if (numComponents == 3)
-        format = GL_RGB;
-    else if (numComponents == 4)
-        format = GL_RGBA;
-
-    // Transfère l’image au GPU
-    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 
     stbi_image_free(data);
     glBindTexture(GL_TEXTURE_2D, 0);
-
-    std::cout << "✅ Texture loaded: " << filename << " (" << width << "x" << height << ", " << numComponents << " channels)" << std::endl;
     return texID;
 }
 
@@ -250,6 +234,10 @@ void initGPUprogram() {
   glLinkProgram(g_program); // The main GPU program is ready to be handle streams of polygons
 
   glUseProgram(g_program);
+  g_texSun   = loadTextureFromFileToGPU("../../media/sun.jpg");
+  g_texEarth = loadTextureFromFileToGPU("../../media/earth.jpg");
+  g_texMoon  = loadTextureFromFileToGPU("../../media/moon.jpg");
+  glUniform1i(glGetUniformLocation(g_program, "material.albedoTex"), 0);
   // TODO: set shader variables, textures, etc.
 }
 
@@ -362,9 +350,7 @@ void init() {
   g_moon = glm::translate(g_earth,glm::vec3(kRadOrbitMoon,0.0f,0.0f))
            * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeMoon));
 
-  //g_texSun   = loadTextureFromFileToGPU("../../media/sun.jpg");
-  g_texEarth = loadTextureFromFileToGPU("../../media/earth.jpg");
-  g_texMoon  = loadTextureFromFileToGPU("../../media/moon.jpg");
+
 
 
 
@@ -428,44 +414,35 @@ void render() {
     glm::vec3 camPos = g_camera.getPosition();
     glUniform3fv(glGetUniformLocation(g_program, "camPos"), 1, glm::value_ptr(camPos));
 
+    glUniform1i(glGetUniformLocation(g_program, "material.albedoTex"), 0);
+
     //Soleil
     glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_sun));
     glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 0.2f);
     glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 1);
-    sphere->render();
+
     glm::vec3 lightPos = glm::vec3(g_sun[3]); // position du Soleil dans le monde
     glUniform3fv(glGetUniformLocation(g_program, "lightPos"), 1, glm::value_ptr(lightPos));
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texSun);
+    sphere->render();
 
-
-    // // Terre
-    // glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_earth));
-    // glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.2f, 1.0f, 0.2f);
-    // glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
-    // sphere->render();
-
-    // // Lune
-    // glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_moon));
-    // glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.3f, 0.3f, 1.0f);
-    // glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
-    // sphere->render();
-    // 🌍 Terre
+    // Terre
     glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_earth));
 
     glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
-    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 1.0f); // neutre
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.2f, 1.0f, 0.2f);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, g_texEarth);
-    glUniform1i(glGetUniformLocation(g_program, "texSampler"), 0);
     sphere->render();
 
-    // 🌙 Lune
+    // Lune
     glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_moon));
 
     glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
-    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 1.0f, 1.0f, 1.0f); // neutre
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.3f, 0.3f, 1.0f);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, g_texMoon);
-    glUniform1i(glGetUniformLocation(g_program, "texSampler"), 0);
     sphere->render();
 
 

@@ -37,12 +37,6 @@ std::shared_ptr<Mesh> Mesh::genSphere(const size_t resolution) {
         }
     }
 
-    // --- Génération des triangles ---
-    /*
-     * Par rectangle on fait
-    1er triangle : (first, second, first+1)
-    2e triangle : (second, second+1, first+1)
-    */
     for (size_t i = 0; i < nbrdedivverticale; ++i) {
         for (size_t j = 0; j < nbrdedivhorizontale; ++j) {
             unsigned int first  = i * (nbrdedivhorizontale + 1) + j;
@@ -112,9 +106,6 @@ void Mesh::init() {
                  m_triangleIndices.data(),
                  GL_STATIC_DRAW);
 
-    // --- Nettoyage ---
-    glBindVertexArray(0); // désactive le VAO
-
 
     glGenBuffers(1, &m_texCoordVbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_texCoordVbo);
@@ -124,6 +115,10 @@ void Mesh::init() {
                  GL_STATIC_DRAW);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(2);
+
+    glBindVertexArray(0); // désactive le VAO
+
+
 
 }
 
