@@ -1591,7 +1591,19 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "DOXYGEN_EXECUTABLE-NOTFOUND"
+			"value" : "/usr/bin/doxygen"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Doxygen",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding Doxygen"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/usr/bin/doxygen][cfound components: doxygen ][v1.9.8()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig",

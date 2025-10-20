@@ -282,19 +282,7 @@
 			"path" : "/home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake"
 		},
 		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindDoxygen.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/home/karenelkhoury/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageMessage.cmake"
+			"path" : "dep/glfw/docs/Doxyfile.in"
 		},
 		{
 			"path" : "dep/glm/CMakeLists.txt"

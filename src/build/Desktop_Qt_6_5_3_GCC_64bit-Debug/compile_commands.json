@@ -13,6 +13,12 @@
 },
 {
   "directory": "/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug",
+  "command": "/bin/g++ -D_MY_OPENGL_IS_33_ -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src -DQT_QML_DEBUG -g -std=gnu++11 -fdiagnostics-color=always -o CMakeFiles/tpOpenGL.dir/planet.cpp.o -c /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/planet.cpp",
+  "file": "/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/planet.cpp",
+  "output": "CMakeFiles/tpOpenGL.dir/planet.cpp.o"
+},
+{
+  "directory": "/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug",
   "command": "/bin/gcc -D_MY_OPENGL_IS_33_ -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glfw/include -I/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src -g -fdiagnostics-color=always -o CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o -c /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/src/gl.c",
   "file": "/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/dep/glad/src/gl.c",
   "output": "CMakeFiles/tpOpenGL.dir/dep/glad/src/gl.c.o"

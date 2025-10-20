@@ -27,7 +27,8 @@ project(tpOpenGL)
 
 add_executable(${PROJECT_NAME} main.cpp
   Mesh.h
-  Mesh.cpp)
+  Mesh.cpp
+  planet.h planet.cpp)
 
 target_sources(${PROJECT_NAME} PRIVATE dep/glad/src/gl.c)
 target_include_directories(${PROJECT_NAME} PRIVATE dep/glad/include/)

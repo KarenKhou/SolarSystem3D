@@ -20,6 +20,7 @@
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src/CMakeFiles/install.dir
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src/CMakeFiles/install/local.dir
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/src/CMakeFiles/install/strip.dir
+/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/docs/CMakeFiles/docs.dir
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/docs/CMakeFiles/edit_cache.dir
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/docs/CMakeFiles/rebuild_cache.dir
 /home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/docs/CMakeFiles/list_install_components.dir

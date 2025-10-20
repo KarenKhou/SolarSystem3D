@@ -42,3 +42,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/bin/objdump")
 endif()
 
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/GLFW" TYPE DIRECTORY FILES "/home/karenelkhoury/Desktop/openGLtp/TP00-OpenGL/src/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/dep/glfw/docs/html")
+endif()
+

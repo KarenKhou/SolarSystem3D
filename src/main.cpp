@@ -49,7 +49,8 @@ GLuint g_vao = 0;
 GLuint g_posVbo = 0;
 GLuint g_colVbo = 0;
 GLuint g_ibo = 0;
-GLuint g_texSun=0, g_texEarth=0, g_texMoon=0;
+GLuint g_texSun=0, g_texEarth=0, g_texMoon=0, g_texMercure=0,
+    g_texVenus=0,g_texMars=0,g_texJupiter=0,g_texSaturne=0,g_texUranuss=0,g_texNeptune=0;
 
 
 // All vertex positions packed in one array [x0, y0, z0, x1, y1, z1, ...]
@@ -237,6 +238,15 @@ void initGPUprogram() {
   g_texSun   = loadTextureFromFileToGPU("../../media/sun.jpg");
   g_texEarth = loadTextureFromFileToGPU("../../media/earth.jpg");
   g_texMoon  = loadTextureFromFileToGPU("../../media/moon.jpg");
+  g_texMercure  = loadTextureFromFileToGPU("../../media/mercure.jpg");
+  g_texVenus = loadTextureFromFileToGPU("../../media/venuss.jpg");
+  g_texMars  = loadTextureFromFileToGPU("../../media/mars.jpg");
+  g_texJupiter  = loadTextureFromFileToGPU("../../media/jupiter.jpg");
+  g_texSaturne  = loadTextureFromFileToGPU("../../media/saturne.jpg");
+  g_texUranuss  = loadTextureFromFileToGPU("../../media/uranus.jpg");
+  g_texNeptune  = loadTextureFromFileToGPU("../../media/neptune.jpg");
+
+
   glUniform1i(glGetUniformLocation(g_program, "material.albedoTex"), 0);
   // TODO: set shader variables, textures, etc.
 }
@@ -325,12 +335,28 @@ void initCamera() {
 // Constants
 const static float kSizeSun = 1;
 const static float kSizeEarth = 0.5;
+const static float kSizeMercure = 0.1;
+const static float kSizeVenus = 0.4;
+const static float kSizeMars = 0.3;
+const static float kSizeJupiter = 0.8;
+const static float kSizeSaturne = 0.9;
+const static float kSizeUranus = 0.6;
+const static float kSizeNeptune = 0.6;
+
 const static float kSizeMoon = 0.25;
 const static float kRadOrbitEarth = 10;
+const static float kRadOrbitMercure = 3;
 const static float kRadOrbitMoon = 2;
+const static float kRadOrbitVenus = 4;
+const static float kRadOrbitMars = 5;
+const static float kRadOrbitJupiter = 6;
+const static float kRadOrbitSaturne = 7;
+const static float kRadOrbitUranus = 8;
+const static float kRadOrbitNeptune = 9;
+
 
 // Transformations (model matrices)
-glm::mat4 g_sun, g_earth, g_moon;
+glm::mat4 g_sun, g_earth, g_moon,g_mercure;
 
 
 auto sphere =  Mesh::genSphere(32);
@@ -342,18 +368,6 @@ void init() {
   initGPUgeometry();
   initCamera();
   sphere->init();
-
-  //matrice de transformation
-  g_sun= glm::scale(glm::mat4(1.0f),glm::vec3(kSizeSun));
-  g_earth = glm::translate(glm::mat4(1.0f), glm::vec3(kRadOrbitEarth, 0.0f, 0.0f))
-            * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeEarth));
-  g_moon = glm::translate(g_earth,glm::vec3(kRadOrbitMoon,0.0f,0.0f))
-           * glm::scale(glm::mat4(1.0f),glm::vec3(kSizeMoon));
-
-
-
-
-
 
 }
 
@@ -395,6 +409,18 @@ void update(const float currentTimeInSec) {
         g_moon = glm::translate(g_moon, glm::vec3(kRadOrbitMoon, 0.0f, 0.0f));
         g_moon = glm::rotate(g_moon, angleMoonRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_moon = glm::scale(g_moon, glm::vec3(kSizeMoon));
+
+
+        // Mercure
+        // float angleEarthRot   = (float)t;
+        // float angleEarthOrbit = (float)t / 2.0f;
+
+        g_mercure = glm::mat4(1.0f);
+        g_mercure = glm::rotate(g_mercure, angleEarthOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mercure = glm::translate(g_mercure, glm::vec3(kRadOrbitMercure, 0.0f, 0.0f));
+        g_mercure = glm::rotate(g_mercure, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_mercure = glm::rotate(g_mercure, angleEarthRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mercure = glm::scale(g_mercure, glm::vec3(kSizeMercure));
 
 
 }
@@ -445,6 +471,15 @@ void render() {
     glBindTexture(GL_TEXTURE_2D, g_texMoon);
     sphere->render();
 
+
+    // mercure
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_mercure));
+
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.5f, 0.5f, 0.5f);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texMercure);
+    sphere->render();
 
 }
 

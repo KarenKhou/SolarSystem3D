@@ -21,7 +21,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -32,7 +32,7 @@
 						3
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-dep.glfw-Debug-c9086bfde0714a89fa69.json",
+					"jsonFile" : "directory-dep.glfw-Debug-a2bb3d6d317af9f1cb93.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -42,13 +42,13 @@
 					"source" : "dep/glfw",
 					"targetIndexes" : 
 					[
-						2
+						3
 					]
 				},
 				{
 					"build" : "dep/glfw/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-dep.glfw.src-Debug-f65c8c5b01b4252603e2.json",
+					"jsonFile" : "directory-dep.glfw.src-Debug-bf330880755eab8ccf67.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -58,20 +58,25 @@
 					"source" : "dep/glfw/src",
 					"targetIndexes" : 
 					[
-						0,
-						3
+						1,
+						4
 					]
 				},
 				{
 					"build" : "dep/glfw/docs",
-					"jsonFile" : "directory-dep.glfw.docs-Debug-3f3ded4b2aa144dcccaf.json",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-dep.glfw.docs-Debug-1a3bf38e128a6c13c99c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
 					},
 					"parentIndex" : 1,
 					"projectIndex" : 1,
-					"source" : "dep/glfw/docs"
+					"source" : "dep/glfw/docs",
+					"targetIndexes" : 
+					[
+						0
+					]
 				},
 				{
 					"build" : "dep/glm",
@@ -101,7 +106,7 @@
 					"name" : "tpOpenGL",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -116,13 +121,21 @@
 					"targetIndexes" : 
 					[
 						0,
-						2,
-						3
+						1,
+						3,
+						4
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 3,
+					"id" : "docs::@d1335f56924d034c1297",
+					"jsonFile" : "target-docs-Debug-37d3c0efc31352bc60e9.json",
+					"name" : "docs",
+					"projectIndex" : 1
+				},
 				{
 					"directoryIndex" : 2,
 					"id" : "glfw::@5106eb10157cbc0193d3",
@@ -133,7 +146,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tpOpenGL::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tpOpenGL-Debug-435af6007dbbf0d86150.json",
+					"jsonFile" : "target-tpOpenGL-Debug-f43959f5a293ace5308e.json",
 					"name" : "tpOpenGL",
 					"projectIndex" : 0
 				},
