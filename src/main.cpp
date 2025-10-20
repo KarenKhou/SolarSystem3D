@@ -235,16 +235,16 @@ void initGPUprogram() {
   glLinkProgram(g_program); // The main GPU program is ready to be handle streams of polygons
 
   glUseProgram(g_program);
-  g_texSun   = loadTextureFromFileToGPU("../../media/sun.jpg");
+  g_texSun   = loadTextureFromFileToGPU("../../media/sun2.jpg");
   g_texEarth = loadTextureFromFileToGPU("../../media/earth.jpg");
   g_texMoon  = loadTextureFromFileToGPU("../../media/moon.jpg");
   g_texMercure  = loadTextureFromFileToGPU("../../media/mercure.jpg");
-  g_texVenus = loadTextureFromFileToGPU("../../media/venuss.jpg");
+  g_texVenus = loadTextureFromFileToGPU("../../media/venus.jpg");
   g_texMars  = loadTextureFromFileToGPU("../../media/mars.jpg");
   g_texJupiter  = loadTextureFromFileToGPU("../../media/jupiter.jpg");
-  g_texSaturne  = loadTextureFromFileToGPU("../../media/saturne.jpg");
-  g_texUranuss  = loadTextureFromFileToGPU("../../media/uranus.jpg");
-  g_texNeptune  = loadTextureFromFileToGPU("../../media/neptune.jpg");
+  // g_texSaturne  = loadTextureFromFileToGPU("../../media/saturne.jpg");
+  // g_texUranuss  = loadTextureFromFileToGPU("../../media/uranus.jpg");
+  // g_texNeptune  = loadTextureFromFileToGPU("../../media/neptune.jpg");
 
 
   glUniform1i(glGetUniformLocation(g_program, "material.albedoTex"), 0);
@@ -342,21 +342,22 @@ const static float kSizeJupiter = 0.8;
 const static float kSizeSaturne = 0.9;
 const static float kSizeUranus = 0.6;
 const static float kSizeNeptune = 0.6;
-
 const static float kSizeMoon = 0.25;
-const static float kRadOrbitEarth = 10;
-const static float kRadOrbitMercure = 3;
+
+const static float kRadOrbitEarth = 8;
+const static float kRadOrbitMercure = 4;
 const static float kRadOrbitMoon = 2;
-const static float kRadOrbitVenus = 4;
-const static float kRadOrbitMars = 5;
-const static float kRadOrbitJupiter = 6;
-const static float kRadOrbitSaturne = 7;
-const static float kRadOrbitUranus = 8;
-const static float kRadOrbitNeptune = 9;
+const static float kRadOrbitVenus = 6;
+const static float kRadOrbitMars = 9;
+const static float kRadOrbitJupiter = 11;
+const static float kRadOrbitSaturne = 13;
+const static float kRadOrbitUranus = 14;
+const static float kRadOrbitNeptune = 15;
 
 
 // Transformations (model matrices)
 glm::mat4 g_sun, g_earth, g_moon,g_mercure;
+glm::mat4 g_venus, g_mars, g_jupiter;
 
 
 auto sphere =  Mesh::genSphere(32);
@@ -382,7 +383,7 @@ void clear() {
 void update(const float currentTimeInSec) {
   // std::cout << currentTimeInSec << std::endl;
 
-        double t = glfwGetTime();
+        double t = glfwGetTime() *0.5;
 
         // Soleil
         g_sun = glm::scale(glm::mat4(1.0f), glm::vec3(kSizeSun));
@@ -412,15 +413,50 @@ void update(const float currentTimeInSec) {
 
 
         // Mercure
-        // float angleEarthRot   = (float)t;
-        // float angleEarthOrbit = (float)t / 2.0f;
+        float angleMercureOrbit = (float)t / 0.3f;
+        float angleMercureRot   = (float)t / 3.0f;
 
         g_mercure = glm::mat4(1.0f);
-        g_mercure = glm::rotate(g_mercure, angleEarthOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mercure = glm::rotate(g_mercure, angleMercureOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mercure = glm::translate(g_mercure, glm::vec3(kRadOrbitMercure, 0.0f, 0.0f));
         g_mercure = glm::rotate(g_mercure, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
-        g_mercure = glm::rotate(g_mercure, angleEarthRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mercure = glm::rotate(g_mercure, angleMercureRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mercure = glm::scale(g_mercure, glm::vec3(kSizeMercure));
+
+        // Venus
+        float angleVenusOrbit = (float)t / 0.62f;
+        float angleVenusRot   = -(float)t / 10.0f;
+
+        g_venus = glm::mat4(1.0f);
+        g_venus = glm::rotate(g_venus, angleVenusOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_venus = glm::translate(g_venus, glm::vec3(kRadOrbitVenus, 0.0f, 0.0f));
+        g_venus = glm::rotate(g_venus, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_venus = glm::rotate(g_venus, angleVenusRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_venus = glm::scale(g_venus, glm::vec3(kSizeVenus));
+
+        //mars
+        float angleMarsOrbit = (float)t / 1.88f + glm::radians(45.0f);
+
+        float angleMarsRot   = (float)t / 1.03f;
+
+        g_mars = glm::mat4(1.0f);
+        g_mars = glm::rotate(g_mars, angleMarsOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mars = glm::translate(g_mars, glm::vec3(kRadOrbitMars, 0.0f, 0.0f));
+        g_mars = glm::rotate(g_mars, glm::radians(25.0f), glm::vec3(0.0f, 0.0f, 1.0f)); // Mars tilt = 25°
+        g_mars = glm::rotate(g_mars, angleMarsRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_mars = glm::scale(g_mars, glm::vec3(kSizeMars));
+
+        // Jupiter
+        float angleJupiterOrbit = (float)t / 11.86f;
+        float angleJupiterRot   = (float)t * 2.5f;
+
+        g_jupiter = glm::mat4(1.0f);
+        g_jupiter = glm::rotate(g_jupiter, angleJupiterOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_jupiter = glm::translate(g_jupiter, glm::vec3(kRadOrbitJupiter, 0.0f, 0.0f));
+        g_jupiter = glm::rotate(g_jupiter, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_jupiter = glm::rotate(g_jupiter, angleJupiterRot, glm::vec3(0.0f, 1.0f, 0.0f));
+        g_jupiter = glm::scale(g_jupiter, glm::vec3(kSizeJupiter));
+
 
 
 }
@@ -479,6 +515,33 @@ void render() {
     glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.5f, 0.5f, 0.5f);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, g_texMercure);
+    sphere->render();
+
+    // venus
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_venus));
+
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.5f, 0.5f, 0.5f);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texVenus);
+    sphere->render();
+
+    // mars
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_mars));
+
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.5f, 0.5f, 0.5f);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texMars);
+    sphere->render();
+
+    // Jupiter
+    glUniformMatrix4fv(glGetUniformLocation(g_program, "modelMat"), 1, GL_FALSE, glm::value_ptr(g_jupiter));
+
+    glUniform1i(glGetUniformLocation(g_program, "isLightSource"), 0);
+    glUniform3f(glGetUniformLocation(g_program, "objectColor"), 0.5f, 0.5f, 0.5f);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texJupiter);
     sphere->render();
 
 }
