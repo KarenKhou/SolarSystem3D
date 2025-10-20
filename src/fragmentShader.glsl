@@ -127,17 +127,21 @@ void main()
     vec3 r = reflect(-l, n);
 
 
-    vec3 ambient  = ka * lightColor * objectColor;
+    vec3 ambient  = ka * lightColor ;
        float diff = max(dot(n, l), 0.0);
-       vec3 diffuse  = kd * diff * lightColor * objectColor;
+       vec3 diffuse  = kd * diff * lightColor ;
        float spec = pow(max(dot(v, r), 0.0), alpha);
        vec3 specular = ks * spec * lightColor;
-    //objectColor=texture(material.albedoTex, fTexCoords);
 
-    color = texture(material.albedoTex, fTexCoords);
 
-    // vec3 texColor = texture(texSampler, fTexCoords).rgb; // couleur de la texture
-    // vec3 finalColor = texColor * (ambient + diffuse) + specular;
+    //color = texture(material.albedoTex, fTexCoords);
 
-    // color = vec4(finalColor, 1.0);
+
+       // Récupération de la couleur de texture
+          vec3 texColor = texture(material.albedoTex, fTexCoords).rgb;
+
+          // Combinaison : texture * (ambiant + diffus) + spéculaire
+          vec3 finalColor = texColor * (ambient + diffuse) + specular;
+
+          color = vec4(finalColor, 1.0);
 }

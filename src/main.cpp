@@ -199,7 +199,7 @@ void initOpenGL() {
   glEnable(GL_CULL_FACE); // Enables face culling (based on the orientation defined by the CW/CCW enumeration).
   glDepthFunc(GL_LESS);   // Specify the depth test for the z-buffer
   glEnable(GL_DEPTH_TEST);      // Enable the z-buffer test in the rasterization
-  glClearColor(0.7f, 0.7f, 0.7f, 1.0f); // specify the background color, used any time the framebuffer is cleared
+  glClearColor(0.0f, 0.0f, 0.4f, 1.0f); // specify the background color, used any time the framebuffer is cleared
 }
 
 // Loads the content of an ASCII file in a standard C++ string
@@ -383,7 +383,7 @@ void clear() {
 void update(const float currentTimeInSec) {
   // std::cout << currentTimeInSec << std::endl;
 
-        double t = glfwGetTime() *0.5;
+        double t = glfwGetTime() *0.7;
 
         // Soleil
         g_sun = glm::scale(glm::mat4(1.0f), glm::vec3(kSizeSun));
@@ -436,7 +436,6 @@ void update(const float currentTimeInSec) {
 
         //mars
         float angleMarsOrbit = (float)t / 1.88f + glm::radians(45.0f);
-
         float angleMarsRot   = (float)t / 1.03f;
 
         g_mars = glm::mat4(1.0f);
