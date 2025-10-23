@@ -92,25 +92,6 @@ private:
 };
 Camera g_camera;
 
-// GLuint loadTextureFromFileToGPU(const std::string &filename) {
-//   int width, height, numComponents;
-//   // Loading the image in CPU memory using stb_image
-//   unsigned char *data = stbi_load(
-//     filename.c_str(),
-//     &width, &height,
-//     &numComponents, // 1 for a 8 bit grey-scale image, 3 for 24bits RGB image, 4 for 32bits RGBA image
-//     0);
-
-//   GLuint texID;
-//   // TODO: create a texture and upload the image data in GPU memory using
-//   // glGenTextures, glBindTexture, glTexParameteri, and glTexImage2D
-
-//   // Free useless CPU memory
-//   stbi_image_free(data);
-//   glBindTexture(GL_TEXTURE_2D, 0); // unbind the texture
-
-//   return texID;
-// }
 
 GLuint loadTextureFromFileToGPU(const std::string &filename) {
     int width, height, numComponents;
@@ -269,17 +250,15 @@ void initCPUgeometry() {
 void initGPUgeometry() {
   // Create a single handle, vertex array object that contains attributes,
   // vertex buffer objects (e.g., vertex's position, normal, and color)
-#ifdef _MY_OPENGL_IS_33_
+
   glGenVertexArrays(1, &g_vao); // If your system doesn't support OpenGL 4.5, you should use this instead of glCreateVertexArrays.
-#else
-  glCreateVertexArrays(1, &g_vao);
-#endif
+
   glBindVertexArray(g_vao);
 
   // Generate a GPU buffer to store the positions of the vertices
   size_t colorBufferSize  = sizeof(float) * g_vertexColors.size();
   size_t vertexBufferSize = sizeof(float)*g_vertexPositions.size(); // Gather the size of the buffer from the CPU-side vector
-#ifdef _MY_OPENGL_IS_33_
+
   glGenBuffers(1, &g_posVbo);
   glBindBuffer(GL_ARRAY_BUFFER, g_posVbo);
   glBufferData(GL_ARRAY_BUFFER, vertexBufferSize, g_vertexPositions.data(), GL_DYNAMIC_READ);
@@ -291,19 +270,6 @@ void initGPUgeometry() {
   glBufferData(GL_ARRAY_BUFFER, colorBufferSize, g_vertexColors.data(), GL_DYNAMIC_READ);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
   glEnableVertexAttribArray(1);
-#else
-  glCreateBuffers(1, &g_posVbo);
-  glBindBuffer(GL_ARRAY_BUFFER, g_posVbo);
-  glNamedBufferStorage(g_posVbo, vertexBufferSize, g_vertexColors.data(), GL_DYNAMIC_STORAGE_BIT); // Create a data storage on the GPU and fill it from a CPU array
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), 0);
-  glEnableVertexAttribArray(0);
-
-  glGenBuffers(1, &g_colVbo);
-  glBindBuffer(GL_ARRAY_BUFFER, g_colVbo);
-  glBufferData(GL_ARRAY_BUFFER, colorBufferSize, g_vertexColors.data(), GL_DYNAMIC_STORAGE_BIT);
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-  glEnableVertexAttribArray(1);
-#endif
 
   // Same for an index buffer object that stores the list of indices of the
   // triangles forming the mesh
@@ -395,7 +361,7 @@ void update(const float currentTimeInSec) {
         g_earth = glm::mat4(1.0f);
         g_earth = glm::rotate(g_earth, angleEarthOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_earth = glm::translate(g_earth, glm::vec3(kRadOrbitEarth, 0.0f, 0.0f));
-        g_earth = glm::rotate(g_earth, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_earth = glm::rotate(g_earth, glm::radians(23.5f), glm::vec3(1.0f, 0.0f, 0.0f));
         g_earth = glm::rotate(g_earth, angleEarthRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_earth = glm::scale(g_earth, glm::vec3(kSizeEarth));
 
@@ -419,7 +385,7 @@ void update(const float currentTimeInSec) {
         g_mercure = glm::mat4(1.0f);
         g_mercure = glm::rotate(g_mercure, angleMercureOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mercure = glm::translate(g_mercure, glm::vec3(kRadOrbitMercure, 0.0f, 0.0f));
-        g_mercure = glm::rotate(g_mercure, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_mercure = glm::rotate(g_mercure, glm::radians(0.03f), glm::vec3(1.0f, 0.0f, 0.0f));
         g_mercure = glm::rotate(g_mercure, angleMercureRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mercure = glm::scale(g_mercure, glm::vec3(kSizeMercure));
 
@@ -430,7 +396,7 @@ void update(const float currentTimeInSec) {
         g_venus = glm::mat4(1.0f);
         g_venus = glm::rotate(g_venus, angleVenusOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_venus = glm::translate(g_venus, glm::vec3(kRadOrbitVenus, 0.0f, 0.0f));
-        g_venus = glm::rotate(g_venus, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_venus = glm::rotate(g_venus, glm::radians(177.0f), glm::vec3(1.0f, 0.0f, 0.0f));
         g_venus = glm::rotate(g_venus, angleVenusRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_venus = glm::scale(g_venus, glm::vec3(kSizeVenus));
 
@@ -441,7 +407,7 @@ void update(const float currentTimeInSec) {
         g_mars = glm::mat4(1.0f);
         g_mars = glm::rotate(g_mars, angleMarsOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mars = glm::translate(g_mars, glm::vec3(kRadOrbitMars, 0.0f, 0.0f));
-        g_mars = glm::rotate(g_mars, glm::radians(25.0f), glm::vec3(0.0f, 0.0f, 1.0f)); // Mars tilt = 25°
+        g_mars = glm::rotate(g_mars, glm::radians(25.0f), glm::vec3(1.0f, 0.0f, 0.0f));
         g_mars = glm::rotate(g_mars, angleMarsRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_mars = glm::scale(g_mars, glm::vec3(kSizeMars));
 
@@ -452,7 +418,7 @@ void update(const float currentTimeInSec) {
         g_jupiter = glm::mat4(1.0f);
         g_jupiter = glm::rotate(g_jupiter, angleJupiterOrbit, glm::vec3(0.0f, 1.0f, 0.0f));
         g_jupiter = glm::translate(g_jupiter, glm::vec3(kRadOrbitJupiter, 0.0f, 0.0f));
-        g_jupiter = glm::rotate(g_jupiter, glm::radians(23.5f), glm::vec3(0.0f, 0.0f, 1.0f));
+        g_jupiter = glm::rotate(g_jupiter, glm::radians(3.1f), glm::vec3(1.0f, 0.0f, 0.0f));
         g_jupiter = glm::rotate(g_jupiter, angleJupiterRot, glm::vec3(0.0f, 1.0f, 0.0f));
         g_jupiter = glm::scale(g_jupiter, glm::vec3(kSizeJupiter));
 
